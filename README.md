@@ -248,3 +248,142 @@ If you try to assign anything else to the `person` variable, TS will complain.
 
 It is not recommended to specify the type of object like this and instead let TS inter the type.
 
+## Nested Objects & Types
+
+Of course object types can also be created for nested objects.
+
+Let's say you have this JavaScript object:
+
+```
+const product = {
+      id: 'abc1',
+      price: 12.99,
+      tags: ['great-offer', 'hot-and-new'],
+      details: {
+        title: 'Red Carpet',
+        description: 'A great carpet - almost brand-new!'
+      }
+    }
+```
+
+This would be the type of such an object:
+```
+    {
+      id: string;
+      price: number;
+      tags: string[];
+      details: {
+        title: string;
+        description: string;
+      }
+    }
+```
+
+So you have an object type in an object type so to say.
+
+## Arrays
+Consider the following modified definition of the person object above:
+
+```
+const person = {
+  name: 'Maximilian',
+  age: 30,
+  hobbies: ['Sports', 'Cooking']
+};
+```
+
+When you hover your mouse over the `hobbies` property, you'll notice that it is of type `string[]`.
+
+Here, we can only assign a string array to the property called `hobbies`. We can also define a variable as an array as shown below:
+
+```
+let favoriteActivities: string[];
+favoriteActivities = ['Sports'];
+```
+
+All the following will throw an error:
+
+```
+favoriteActivities = 1;
+favoriteActivities = ['Sports', 1];
+```
+
+The last line throws an error because we're assigning an array of string and number. We can fix this by specifying the type as `any[]` but when using `any` we're losing the type-power of TS.
+
+## Working with Tuples
+
+Let's consider that we want to add a new attribute to the person called `role` and the value for this role should consist of two values: a number and a string.
+
+```
+role: [2, 'author']
+```
+
+When you add this property to the `person` object, TypeScript is going to infer the `role` as `(number | string)[]` which means, it is an array of either number or string. It is called `union` type which we will discuss later.
+
+When defined like this the following are all valid:
+
+```
+// person.role.push('admin');
+// person.role[1] = 10;
+
+// person.role = [0, 'admin', 'user'];
+```
+
+But for now, we really want to define a role that has 2 parts: a number and a string. That's it!
+
+For this we need to use a special type called `tuple`. Tuples are not inferred by TS correctly and hence we have to specify the type of person object.
+
+```
+const person: {
+  name: string;
+  age: number;
+  hobbies: string[];
+  role: [number, string]; // THIS IS THE TUPLE TYPE
+} = {
+  name: 'Maximilian',
+  age: 30,
+  hobbies: ['Sports', 'Cooking'],
+  role: [2, 'author']
+};
+```
+
+We define tuple using the `[]` within which we can specify the type of data we're expecting.
+
+In short this means, we need an array where the first element is a `number` and the second element is a `string`. Adding anymore elements or modifying the first two elements to other types than expected will result in an error.
+
+## Working with Enums
+Enums allow us to define constants.
+
+```
+// const ADMIN = 0;
+// const READ_ONLY = 1;
+// const AUTHOR = 2;
+
+enum Role { ADMIN , READ_ONLY, AUTHOR };
+
+const person = {
+  name: 'Maximilian',
+  age: 30,
+  hobbies: ['Sports', 'Cooking'],
+  role: Role.ADMIN
+};
+
+if (person.role === Role.AUTHOR) {
+  console.log('is author');
+}
+```
+
+By default, the constants in the `enum` get the values as 0, 1 etc. We can also modify these as shown below:
+
+```
+enum Role { ADMIN = 5, READ_ONLY , AUTHOR};
+```
+
+Here, `ADMIN` get the value as 5 and the rest get a value incremented by 1 ie. `READ_ONLY` is 6, `AUTHOR` is 7.
+
+We can specify our own values to all the constants as shown below:
+
+```
+enum Role { ADMIN = 'ADMIN', READ_ONLY = 100, AUTHOR = 'AUTHOR' };
+```
+
