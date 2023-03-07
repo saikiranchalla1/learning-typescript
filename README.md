@@ -30,6 +30,34 @@ sudo npm install -g typescript
 
 This installs TypeScript on your machine globally and it can be invoked irrespective of the directory.
 
+## Basic Types
+Static typing helps to catch errors at compile time rather than at runtime, making code more reliable and easier to maintain. In TypeScript, there are several types that can be used to define variables, functions, and classes.
+
+Here are the most commonly used types in TypeScript:
+
+1. Number Type
+The number type is used to represent numeric values in TypeScript. It can be used to define variables, parameters, and return types of functions.
+
+Example:
+```
+let age: number = 25;
+function add(a: number, b: number): number {
+  return a + b;
+}
+```
+
+2. String Type
+The string type is used to represent string values in TypeScript. It can be used to define variables, parameters, and return types of functions.
+
+Example:
+
+```
+let name: string = "John";
+function greet(name: string): string {
+  return "Hello, " + name + "!";
+}
+
+```
 ## TypeScript Compiler Options
 
 ### Watch mode
@@ -38,7 +66,80 @@ On every change, we've to run the `tsc` command to compile the files to JS. Inst
 ```
 tsc <FILE NAME> --watch
 ```
+3. Boolean Type
+The boolean type is used to represent boolean values in TypeScript. It can be used to define variables, parameters, and return types of functions.
 
+Example:
+
+```
+let isLogged: boolean = true;
+function isLoggedIn(): boolean {
+  return isLogged;
+}
+
+```
+4. Array Type
+The array type is used to represent an array of values of the same type in TypeScript. It can be used to define variables, parameters, and return types of functions.
+
+Example:
+```
+let numbers: number[] = [1, 2, 3, 4, 5];
+function getFirstNumber(numbers: number[]): number {
+  return numbers[0];
+}
+
+```
+
+5. Object Type
+The object type is used to represent an object in TypeScript. It can be used to define variables, parameters, and return types of functions.
+
+Example:
+
+```
+let person: object = { name: "John", age: 25 };
+function getPersonName(person: object): string {
+  return person["name"];
+}
+
+```
+
+6. Any Type
+The any type is used to represent any type in TypeScript. It can be used to define variables, parameters, and return types of functions. However, using the any type should be avoided whenever possible as it undermines the benefits of using TypeScript.
+
+Example:
+
+```
+let value: any = "hello";
+function doSomething(value: any): any {
+  // ...
+}
+
+```
+
+7. Void Type
+The void type is used to represent the absence of a value in TypeScript. It is typically used as the return type of functions that do not return a value.
+
+Example:
+
+```
+function sayHello(name: string): void {
+  console.log("Hello, " + name + "!");
+}
+
+```
+
+8. Null and Undefined Types
+The null and undefined types are used to represent null and undefined values in TypeScript. They can be used to define variables, parameters, and return types of functions.
+
+Example:
+
+```
+let someValue: null = null;
+function doSomething(): undefined {
+  // ...
+}
+
+```
 ### Compiling the entire project
 TO compile a project with multiple files, we can let TS know that the entire folder can be treated as a single project. To do so:
 1. run `tsc --init` to generate the `tsconfig.json` file.

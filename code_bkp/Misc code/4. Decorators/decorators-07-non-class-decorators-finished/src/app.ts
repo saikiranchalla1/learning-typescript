@@ -67,11 +67,10 @@ function Log4(target: any, name: string | Symbol, position: number) {
 }
 
 class Product {
-  @Log
   title: string;
   private _price: number;
 
-  @Log2
+  
   set price(val: number) {
     if (val > 0) {
       this._price = val;
@@ -86,7 +85,7 @@ class Product {
   }
 
   @Log3
-  getPriceWithTax(@Log4 tax: number) {
+  getPriceWithTax(tax: number) {
     return this._price * (1 + tax);
   }
 }
