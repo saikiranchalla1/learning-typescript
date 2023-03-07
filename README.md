@@ -210,7 +210,11 @@ lib: [
    - noImplicitThis - Raise error on ‘this’ expressions with an implied ‘any’ type.
    - alwaysStrict - Ensures that your files are parsed in the ECMAScript strict mode, and emit “use strict” for each source file.
 
+These links might also be interesting:
 
+- tsconfig Docs: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+- Compiler Config Docs: https://www.typescriptlang.org/docs/handbook/compiler-options.html
+- VS Code TS Debugging: https://code.visualstudio.com/docs/typescript/typescript-debugging
 
 
 
