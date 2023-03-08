@@ -30,6 +30,23 @@ sudo npm install -g typescript
 
 This installs TypeScript on your machine globally and it can be invoked irrespective of the directory.
 
+### Further setup for the course project
+1. Create a folder with any name and execute the command `npm init` inside the folder.
+2. Follow the wizard and use all the defaults.
+3. Once the wizard, execute the command `npm install --save-dev lite-server`.
+4. Add the following to the `package.json` file's script section.
+
+```
+"start": "lite-server"
+```
+
+So the final `scripts` would look like: 
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+```
 ### Reading
 1. https://basarat.gitbook.io/typescript/getting-started Please go over the Getting Started with Typescript page only.
 
