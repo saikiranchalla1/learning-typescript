@@ -30,6 +30,9 @@ sudo npm install -g typescript
 
 This installs TypeScript on your machine globally and it can be invoked irrespective of the directory.
 
+### Reading
+1. https://basarat.gitbook.io/typescript/getting-started Please go over the Getting Started with Typescript page only.
+
 ## Basic Types
 Static typing helps to catch errors at compile time rather than at runtime, making code more reliable and easier to maintain. In TypeScript, there are several types that can be used to define variables, functions, and classes.
 
@@ -140,6 +143,13 @@ function doSomething(): undefined {
 }
 
 ```
+#### Reading
+1. https://basarat.gitbook.io/typescript/type-system/enums
+2. https://basarat.gitbook.io/typescript/type-system/literal-types
+3. https://basarat.gitbook.io/typescript/type-system/type-inference
+4. https://basarat.gitbook.io/typescript/type-system/never (MUST READ)
+5. https://basarat.gitbook.io/typescript/type-system/functions
+
 ### Compiling the entire project
 TO compile a project with multiple files, we can let TS know that the entire folder can be treated as a single project. To do so:
 1. run `tsc --init` to generate the `tsconfig.json` file.
