@@ -13,7 +13,8 @@ function addAndHandle(n1: number, n2: number, cb: (num: number) => void) {
 
 printResult(add(5, 12));
 
-let combineValues: (a: number, b: number) => number;
+// let combineValues: Function; <= Function is a type in TS
+let combineValues: (a: number, b: number) => number; // THIS IS A BETTER WAY TO DEFINE A FUNCTION TYPE
 
 combineValues = add;
 // combineValues = printResult;
