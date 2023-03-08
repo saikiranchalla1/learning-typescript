@@ -150,6 +150,8 @@ function doSomething(): undefined {
 4. https://basarat.gitbook.io/typescript/type-system/never (MUST READ)
 5. https://basarat.gitbook.io/typescript/type-system/functions
 
+#### Extras
+1. https://www.codecademy.com/learn/learn-typescript/modules/learn-typescript-types/cheatsheet
 ### Compiling the entire project
 TO compile a project with multiple files, we can let TS know that the entire folder can be treated as a single project. To do so:
 1. run `tsc --init` to generate the `tsconfig.json` file.
