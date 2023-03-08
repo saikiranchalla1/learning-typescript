@@ -47,6 +47,8 @@ So the final `scripts` would look like:
     "start": "lite-server"
   },
 ```
+
+Now, you can run the command `npm start` to launch the application from a web server.
 ### Reading
 1. https://basarat.gitbook.io/typescript/getting-started Please go over the Getting Started with Typescript page only.
 
