@@ -9,6 +9,13 @@ const person = {
 };
 
 let favoriteActivities: string[];
+
+// favoriteActivities = 'Sports'; <- ERROR
+
+// let favoriteActivities: any[];
+// favoriteActivities = ['Sports', 1];
+
+
 favoriteActivities = ['Sports'];
 
 console.log(person.name);
