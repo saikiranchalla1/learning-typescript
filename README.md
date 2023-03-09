@@ -16,6 +16,8 @@
     - [Compiling the entire project](#compiling-the-entire-project)
     - [Including and Excluding Files](#including-and-excluding-files)
     - [Setting a Compilation Target.](#setting-a-compilation-target)
+  - [Programming Paradigms (optional. Read only if you've never heard of OOP)](#programming-paradigms-optional-read-only-if-youve-never-heard-of-oop)
+    - [Object Oriented Programming (OOP)](#object-oriented-programming-oop)
   - [Classes and Interfaces](#classes-and-interfaces)
     - [Constructor Functions and the `this` keyword](#constructor-functions-and-the-this-keyword)
     - [private and public Access modifiers](#private-and-public-access-modifiers)
@@ -301,7 +303,56 @@ These links might also be interesting:
 - VS Code TS Debugging: https://code.visualstudio.com/docs/typescript/typescript-debugging
 
 
+## Programming Paradigms (optional. Read only if you've never heard of OOP)
+There are several different types of programming paradigms or styles that can be used to write computer programs. Here are some of the most common ones:
 
+1. Imperative programming:
+Imperative programming is a style of programming that focuses on describing how a program should accomplish a specific task. It typically involves writing a sequence of statements that modify the state of the program as it executes. Examples of imperative programming languages include C, C++, and Java.
+
+2. Functional programming:
+Functional programming is a programming paradigm that emphasizes the use of functions to solve problems. In this paradigm, functions are treated as first-class objects and can be used as arguments to other functions or returned as values from functions. Examples of functional programming languages include Haskell, Lisp, and Clojure.
+
+3. Object-oriented programming (OOP):
+Object-oriented programming is a programming paradigm that is based on the concept of objects. In this paradigm, software is designed by creating objects that interact with each other to perform a task. Each object has its own data and methods, which can be accessed and modified by other objects. Examples of object-oriented programming languages include Java, Python, and C++.
+
+4. Procedural programming:
+Procedural programming is a style of programming that focuses on describing a program as a sequence of procedures or subroutines that operate on data. It typically involves dividing a program into smaller, more manageable pieces that can be reused and combined to solve larger problems. Examples of procedural programming languages include C, Pascal, and Fortran.
+
+5. Declarative programming:
+Declarative programming is a programming paradigm that focuses on describing what a program should accomplish, rather than how it should accomplish it. It typically involves using a specialized language or framework to describe a problem in terms of logical rules or constraints. Examples of declarative programming languages include SQL, Prolog, and XSLT.
+
+### Object Oriented Programming (OOP)
+OOP (Object-Oriented Programming) is a programming paradigm that is based on the concept of objects. In this paradigm, software is designed by creating objects that interact with each other to perform a task. Each object has its own data and methods, which can be accessed and modified by other objects.
+
+The key concepts of OOP are:
+
+Encapsulation: Encapsulation is the process of hiding the implementation details of an object from the outside world. This is achieved by making the object's data private and providing public methods for accessing and modifying that data. Encapsulation helps to ensure that an object's internal state is not accidentally or maliciously modified by external code.
+
+Inheritance: Inheritance is the ability of an object to inherit properties and behavior from a parent object. Inheritance allows developers to create new objects that are similar to existing objects, but with additional or modified behavior. This helps to reduce code duplication and makes it easier to maintain and update software.
+
+Polymorphism: Polymorphism is the ability of objects to take on multiple forms. This is achieved through method overloading and method overriding. Method overloading allows multiple methods with the same name to exist in a class, but with different parameters. Method overriding allows a subclass to provide its own implementation of a method that is already defined in its parent class.
+
+Abstraction: Abstraction is the process of simplifying complex systems by breaking them down into smaller, more manageable components. Abstraction helps to reduce complexity and increase modularity, making it easier to develop, test, and maintain software.
+
+In OOP, objects are created from classes, which define the properties and behavior of the objects. Classes can be thought of as blueprints for creating objects. When an object is created from a class, it is said to be an instance of that class.
+
+OOP is used in a wide range of software applications, from web applications to desktop applications to mobile apps. It is particularly well-suited for large, complex software projects because it provides a way to organize and manage the code in a more modular and reusable way.
+
+As mentioned earlier, OOP is a programming paradigm that is based on the concept of objects. Let's dive into some of the key principles of OOP:
+
+Classes and Objects:
+In OOP, a class is a blueprint for creating objects. It defines the properties and behavior that all objects of that class will have. An object is an instance of a class, created using the class blueprint. Objects have their own unique state (data) and behavior (methods). For example, a class called "Car" might have properties like "color", "make", and "model", and methods like "start", "stop", and "accelerate". Objects created from this class would have their own values for these properties and would be able to call the methods defined in the class.
+
+Encapsulation:
+Encapsulation is the idea of hiding the internal workings of an object from the outside world. In OOP, this is typically done by making data private (only accessible within the class) and providing public methods for accessing and modifying that data. This allows objects to control how their internal state is accessed and modified, and can help prevent bugs and maintain code stability.
+
+Inheritance:
+Inheritance is a mechanism that allows one class to inherit properties and behavior from another class. The inherited class is called the "parent" or "base" class, and the inheriting class is called the "child" or "derived" class. Inheritance allows us to reuse code, since the child class can use the properties and methods of the parent class without having to redefine them. For example, a class called "ElectricCar" might inherit from the "Car" class, adding new properties and methods specific to electric cars.
+
+Polymorphism:
+Polymorphism is the idea that objects of different classes can be treated as if they are the same type of object. This allows for more flexible and modular code. Polymorphism can be achieved in several ways, including method overloading (defining multiple methods with the same name but different parameters) and method overriding (redefining a method in a child class).
+
+Overall, OOP provides a powerful way of organizing and structuring code, allowing developers to create reusable and maintainable software.
 ## Classes and Interfaces
 
 In TypeScript, a class is a blueprint or template for creating objects that have properties and methods. Classes are defined using the class keyword and can have constructors, properties, and methods.
