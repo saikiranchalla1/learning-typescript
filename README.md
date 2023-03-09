@@ -1,3 +1,56 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [TypeScript](#typescript)
+  - [To import the diagrams](#to-import-the-diagrams)
+  - [Working with code examples](#working-with-code-examples)
+  - [Installing TypeScript](#installing-typescript)
+    - [Further setup for the course project](#further-setup-for-the-course-project)
+    - [Reading](#reading)
+  - [Basic Types](#basic-types)
+  - [TypeScript Compiler Options](#typescript-compiler-options)
+    - [Watch mode](#watch-mode)
+      - [Reading](#reading-1)
+      - [Extras](#extras)
+    - [Compiling the entire project](#compiling-the-entire-project)
+    - [Including and Excluding Files](#including-and-excluding-files)
+    - [Setting a Compilation Target.](#setting-a-compilation-target)
+  - [Classes and Interfaces](#classes-and-interfaces)
+    - [Constructor Functions and the `this` keyword](#constructor-functions-and-the-this-keyword)
+    - [private and public Access modifiers](#private-and-public-access-modifiers)
+    - [Shorthand initialization](#shorthand-initialization)
+    - [Inheritance](#inheritance)
+    - [Overriding Properties and the "protected" modifier](#overriding-properties-and-the-protected-modifier)
+    - [Getters and Setters](#getters-and-setters)
+    - [Static Methods and Properties](#static-methods-and-properties)
+    - [Abstract Classes](#abstract-classes)
+    - [Singleton Pattern and Private Constructors](#singleton-pattern-and-private-constructors)
+    - [Exercises](#exercises)
+    - [Interface](#interface)
+    - [Using Interface with Classes](#using-interface-with-classes)
+    - [Interface vs Custom Types](#interface-vs-custom-types)
+    - [Readonly Interface Properties](#readonly-interface-properties)
+    - [Extending Interfaces](#extending-interfaces)
+    - [Interface as Function Types](#interface-as-function-types)
+    - [Optional Parameters and Properties](#optional-parameters-and-properties)
+    - [Resources](#resources)
+    - [Interview Questions](#interview-questions)
+  - [Advanced Types](#advanced-types)
+    - [INteraction types](#interaction-types)
+    - [Type Guards](#type-guards)
+    - [Discriminated Unions](#discriminated-unions)
+    - [Type Casting](#type-casting)
+    - [Index Properties](#index-properties)
+    - [Function Overloads](#function-overloads)
+    - [Optional Chaining](#optional-chaining)
+    - [Null Coalescing](#null-coalescing)
+    - [Resources](#resources-1)
+    - [Exercises](#exercises-1)
+    - [Interview Questions](#interview-questions-1)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # TypeScript
 ## To import the diagrams
 - Visit diagrams.net (formerly draw.io).
