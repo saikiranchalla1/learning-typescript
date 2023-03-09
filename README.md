@@ -674,7 +674,7 @@ In this example, we also use the throw keyword to raise an error when the age se
 In summary, getters and setters in TypeScript provide a way to define methods that are used to retrieve or set the value of an object's property. They allow us to encapsulate the access to an object's data and to control the read and write operations. We can use getters and setters to enforce data validation rules and to ensure the consistency of an object's state.
 
 
-### Status Methods and Properties
+### Static Methods and Properties
 
 In TypeScript, static methods and properties are class-level members that are associated with the class itself, rather than with any particular instance of the class. This means that they can be accessed directly from the class, without the need to create an instance of the class first.
 
@@ -843,6 +843,98 @@ singleton2.sayHello(); // Hello World!
 In this example, we create two instances of the Singleton class using the getInstance method and check if they are the same instance by comparing their references. Since the getInstance method always returns the same instance of the Singleton class, the two instances are the same. We then call the sayHello method on each instance, which logs "Hello World!" to the console.
 
 In summary, Singleton pattern is a design pattern that ensures that only one instance of a class is created and provides a global point of access to that instance. In TypeScript, Singleton pattern can be implemented using a private constructor and a static method to create and return the single instance of the class.
+
+### Exercises
+1. Create a class called Person that has the following properties: name, age, and gender. Add a method called greet that returns a string greeting the person. Instantiate the class with a person's information and call the greet method.
+
+Solution:
+```
+class Person {
+  name: string;
+  age: number;
+  gender: string;
+
+  constructor(name: string, age: number, gender: string) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  greet() {
+    return `Hello, my name is ${this.name}, I'm ${this.age} years old, and I'm ${this.gender}. Nice to meet you!`;
+  }
+}
+
+const person = new Person("Alice", 25, "female");
+console.log(person.greet()); // Hello, my name is Alice, I'm 25 years old, and I'm female. Nice to meet you!
+
+```
+
+2. Create a class called Rectangle that has the following properties: width and height. Add methods called getArea and getPerimeter that return the area and perimeter of the rectangle. Instantiate the class with a rectangle's dimensions and call the getArea and getPerimeter methods.
+
+Solution:
+```
+class Rectangle {
+  width: number;
+  height: number;
+
+  constructor(width: number, height: number) {
+    this.width = width;
+    this.height = height;
+  }
+
+  getArea() {
+    return this.width * this.height;
+  }
+
+  getPerimeter() {
+    return 2 * (this.width + this.height);
+  }
+}
+
+const rectangle = new Rectangle(5, 10);
+console.log(rectangle.getArea()); // 50
+console.log(rectangle.getPerimeter()); // 30
+
+```
+
+3. Create a class called BankAccount that has the following properties: balance and accountNumber. Add methods called deposit and withdraw that add and subtract funds from the account balance, respectively. Instantiate the class with an initial balance and account number, and call the deposit and withdraw methods.
+
+Solution:
+```
+class BankAccount {
+  balance: number;
+  accountNumber: string;
+
+  constructor(balance: number, accountNumber: string) {
+    this.balance = balance;
+    this.accountNumber = accountNumber;
+  }
+
+  deposit(amount: number) {
+    this.balance += amount;
+  }
+
+  withdraw(amount: number) {
+    if (this.balance >= amount) {
+      this.balance -= amount;
+    } else {
+      console.log("Insufficient balance.");
+    }
+  }
+}
+
+// Example usage:
+const myAccount = new BankAccount(1000, "123-456-789");
+console.log(`Account balance: $${myAccount.balance}`);
+myAccount.deposit(500);
+console.log(`Account balance after deposit: $${myAccount.balance}`);
+myAccount.withdraw(200);
+console.log(`Account balance after withdrawal: $${myAccount.balance}`);
+myAccount.withdraw(1500); // Should print "Insufficient balance."
+
+```
+
 
 
 ### Interface
@@ -1164,3 +1256,526 @@ More on TS Interfaces: https://www.typescriptlang.org/docs/handbook/2/objects.ht
 - What is the "implements" keyword in TypeScript, and how is it used to implement interfaces?
 - What is a callback function, and how is it used in TypeScript classes?
 - What is the difference between an abstract class and a regular class in TypeScript?
+
+
+## Advanced Types
+### INteraction types
+
+In TypeScript, an intersection type is a type that combines multiple types into one by taking the common properties and methods of those types. It allows you to define a type that has all the properties and methods of two or more types.
+
+To define an intersection type, you use the "&" operator to combine two or more types. For example:
+
+```
+type FirstType = {
+  name: string;
+  age: number;
+};
+
+type SecondType = {
+  gender: string;
+  email: string;
+};
+
+type CombinedType = FirstType & SecondType;
+
+const user: CombinedType = {
+  name: "John",
+  age: 30,
+  gender: "Male",
+  email: "john@example.com"
+};
+
+```
+
+In the above example, we define two types, FirstType and SecondType, and then combine them using the "&" operator to create a new type CombinedType. CombinedType now has all the properties of FirstType and SecondType.
+
+When we create an object of type CombinedType, we must include all the properties defined in both types. In this case, we must include name, age, gender, and email.
+
+Intersection types are useful when you want to create a type that combines the features of two or more types. They can also be used to create more complex types by combining multiple intersection types together.
+
+For example:
+
+
+```
+type ThirdType = {
+  phone: string;
+  address: string;
+};
+
+type SuperType = CombinedType & ThirdType;
+
+const superUser: SuperType = {
+  name: "Jane",
+  age: 25,
+  gender: "Female",
+  email: "jane@example.com",
+  phone: "1234567890",
+  address: "123 Main St"
+};
+
+```
+
+In this example, we define a new type ThirdType with phone and address properties, and then combine it with CombinedType using the "&" operator to create a new type SuperType. SuperType now has all the properties of CombinedType and ThirdType.
+
+When we create an object of type SuperType, we must include all the properties defined in all three types: name, age, gender, email, phone, and address.
+
+Overall, intersection types allow you to create more powerful and flexible types in TypeScript by combining the features of multiple types.
+
+### Type Guards
+In TypeScript, type guards are a way to narrow down the type of a value within a conditional statement. They are used to improve type safety by allowing you to check the type of a variable at runtime and perform different actions based on its type.
+
+Type guards come in several forms, including:
+
+1. typeof type guards
+The typeof type guard checks the type of a variable based on its runtime type. For example:
+
+```
+function printLength(strOrArray: string | string[]) {
+  if (typeof strOrArray === "string") {
+    console.log(strOrArray.length); // OK
+  } else {
+    console.log(strOrArray.length); // OK
+  }
+}
+
+```
+
+
+In this example, the typeof type guard checks whether strOrArray is a string or an array of string and then performs different actions based on the type.
+
+2. instanceof type guards
+The instanceof type guard checks whether an object is an instance of a particular class or interface. For example:
+
+```
+interface Dog {
+  bark(): void;
+}
+
+class Labrador implements Dog {
+  bark() {
+    console.log("Woof!");
+  }
+
+  swim() {
+    console.log("Swimming...");
+  }
+}
+
+function petTheDog(dog: Dog) {
+  if (dog instanceof Labrador) {
+    dog.swim(); // OK
+  }
+  dog.bark(); // OK
+}
+
+```
+
+In this example, the instanceof type guard checks whether the dog object is an instance of the Labrador class and then performs different actions based on whether it is or not.
+
+3. User-defined type guards
+User-defined type guards are functions that check the type of a value based on custom logic. They are created by defining a function that returns a boolean and then using it in a conditional statement. For example:
+
+```
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+
+function isCircle(shape: Shape): shape is Circle {
+  return shape.kind === "circle";
+}
+
+function calculateArea(shape: Shape) {
+  if (isCircle(shape)) {
+    return Math.PI * shape.radius ** 2;
+  } else {
+    return shape.sideLength ** 2;
+  }
+}
+
+```
+
+In this example, we define a Shape type that can be either a Circle or a Square. We then define a isCircle function that checks whether a Shape is a Circle and returns a boolean. We use this function in the calculateArea function to perform different calculations based on the type of Shape.
+
+Overall, type guards are an important feature of TypeScript that help ensure type safety at runtime by allowing you to check the type of a variable and perform different actions based on its type. They can be used with typeof, instanceof, or user-defined functions.
+
+
+### Discriminated Unions
+
+Discriminated unions are a powerful feature of TypeScript that allow you to create a type that can represent a range of different possibilities. Discriminated unions make it easy to write code that is both type-safe and easy to read.
+
+In a discriminated union, each variant of a type has a discriminant property that is unique to that variant. The discriminant property is a string literal type that describes the type of the value. For example:
+
+```
+interface Square {
+  kind: "square";
+  size: number;
+}
+
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+type Shape = Square | Circle;
+
+```
+
+In this example, the Shape type is a discriminated union of Square and Circle. The kind property is the discriminant property, and it has the value "square" for the Square type and "circle" for the Circle type.
+
+Discriminated unions can be used to create type-safe code that is easy to read and understand. For example, you can use a switch statement with the discriminant property to handle each variant of the type:
+
+```
+function calculateArea(shape: Shape) {
+  switch (shape.kind) {
+    case "square":
+      return shape.size * shape.size;
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+  }
+}
+
+```
+
+In this example, the calculateArea function uses a switch statement with the kind property to handle each variant of the Shape type. Because TypeScript knows that the discriminant property uniquely identifies each variant, it can ensure that the switch statement is type-safe and that all possible variants are handled.
+
+Discriminated unions are a powerful feature of TypeScript that allow you to create type-safe code that is easy to read and understand. By using a discriminant property to identify each variant of a type, you can create code that is both flexible and easy to work with.
+
+### Type Casting
+
+Type casting in TypeScript is a way to tell the TypeScript compiler that you know more about the type of a value than it does. It allows you to change the type of a value from one type to another, and is useful when you need to work with a value in a different way than the type inferred by TypeScript.
+
+Type casting is done using the as keyword or the < > syntax, and it tells the TypeScript compiler to treat the value as if it were of a different type. For example:
+
+```
+const someValue: any = "Hello, world!";
+const strLength: number = (someValue as string).length;
+
+```
+
+In this example, the someValue variable is of type any, which means TypeScript doesn't know anything about its type. However, we know that it's a string, so we use type casting to tell TypeScript to treat it as a string. We use the as keyword to cast someValue to a string, and then we use the .length property to get its length.
+
+Type casting can also be used with custom types and interfaces. For example:
+
+```
+interface Person {
+  name: string;
+  age: number;
+}
+
+const obj: any = { name: "John", age: 30 };
+const person: Person = obj as Person;
+
+```
+
+In this example, we have an obj variable of type any, but we know that it has the properties name and age. We use type casting with the as keyword to tell TypeScript that obj should be treated as a Person object, and we assign it to the person variable, which is of type Person.
+
+It's important to use type casting judiciously, as it can be a potential source of errors if used incorrectly. It's best to use type casting only when you are sure that the value being casted is of the correct type, or when you need to work with a value in a way that isn't directly supported by its inferred type.
+
+
+
+
+### Index Properties
+Index properties in TypeScript allow you to define object types with dynamic keys. In other words, they allow you to define object types that can have any number of properties, as long as they meet certain criteria.
+
+There are two types of index properties in TypeScript: string index signatures and number index signatures.
+
+String index signatures allow you to define an object type with a string index that can be used to access any property that has a string key:
+
+```
+interface StringMap {
+  [key: string]: string;
+}
+
+const map: StringMap = {
+  name: "John",
+  age: "30"
+};
+
+console.log(map.name); // "John"
+console.log(map.age); // "30"
+
+```
+
+In this example, we define a StringMap interface with a string index signature that says that any property with a string key must have a value of type string. We then create a map object that has two properties, name and age, both of which have string values. We can access these properties using dot notation.
+
+Number index signatures work in a similar way, but they allow you to define an object type with a number index that can be used to access any property that has a number key:
+
+
+```
+interface NumberMap {
+  [key: number]: string;
+}
+
+const map: NumberMap = {
+  0: "John",
+  1: "30"
+};
+
+console.log(map[0]); // "John"
+console.log(map[1]); // "30"
+
+```
+
+In this example, we define a NumberMap interface with a number index signature that says that any property with a number key must have a value of type string. We then create a map object that has two properties, 0 and 1, both of which have string values. We can access these properties using bracket notation.
+
+One important thing to note about index properties is that they cannot be used in conjunction with explicit property declarations. In other words, if you define a string or number index signature on an object type, you cannot also define specific properties with those same keys.
+
+Index properties are a powerful feature of TypeScript that allow you to define flexible object types that can be used in a variety of situations. By using index signatures, you can create object types that can have any number of properties, as long as they meet certain criteria.
+
+### Function Overloads
+
+Function overloads in TypeScript allow you to define multiple signatures for a function, each with a different set of parameter and return types. This allows the TypeScript compiler to provide better type checking and inference when calling the function with different argument types.
+
+To define function overloads, you start by providing a list of overload signatures for your function. Each signature should have a unique set of parameter types and a corresponding return type. For example:
+
+```
+function add(x: number, y: number): number;
+function add(x: string, y: string): string;
+function add(x: any, y: any): any {
+  return x + y;
+}
+
+```
+
+In this example, we define an add function with two overload signatures. The first signature takes two number parameters and returns a number. The second signature takes two string parameters and returns a string. The third and final signature is the implementation of the function, which takes two parameters of type any and returns a value of type any.
+
+When you call the add function with arguments, TypeScript will automatically determine which overload to use based on the types of the arguments:
+
+```
+const result1 = add(1, 2); // result1 is inferred as a number
+const result2 = add("Hello, ", "world!"); // result2 is inferred as a string
+
+```
+
+In this example, the first call to add passes two number arguments, so TypeScript uses the first overload and infers that the result should be a number. The second call passes two string arguments, so TypeScript uses the second overload and infers that the result should be a string.
+
+Function overloads can be especially useful when working with APIs that accept multiple types of arguments and return different types of results based on those arguments. By defining multiple overload signatures, you can ensure that your code is type-safe and will work correctly with different argument types.
+
+One important thing to note is that the implementation of the function (the final signature in the example above) must be compatible with all of the overload signatures. In other words, the implementation must accept all of the parameter types and return a value that is compatible with all of the return types. If the implementation does not meet these criteria, TypeScript will produce an error.
+
+### Optional Chaining
+Optional chaining in TypeScript is a feature that allows you to safely access properties or call methods on an object that may be undefined or null without causing a runtime error. It provides a more concise and readable syntax for handling null and undefined values.
+
+To use optional chaining, you add a question mark (?) before the dot (.) operator when accessing properties or calling methods. Here's an example:
+
+
+```
+const user = {
+  name: "John",
+  age: 30,
+  address: {
+    street: "123 Main St",
+    city: "Anytown",
+    state: "CA",
+    zip: "12345"
+  }
+};
+
+const zipCode = user?.address?.zip;
+```
+
+
+In this example, we have an object called user with several properties, including an address object with a zip property. We use optional chaining to safely access the zip property, even if the user or address objects are undefined or null.
+
+If the user or address objects are undefined or null, the expression user?.address?.zip will return undefined instead of throwing a runtime error. This allows you to write more robust and error-resistant code.
+
+Optional chaining can also be used with method calls. For example:
+
+```
+const user = {
+  name: "John",
+  age: 30,
+  getAddress(): string {
+    return "123 Main St, Anytown, CA 12345";
+  }
+};
+
+const zipCode = user?.getAddress?.()?.split(", ")[2];
+
+```
+
+In this example, we have an object called user with a method called getAddress that returns a string. We use optional chaining to safely call the getAddress method, even if the user object is undefined or null. We also use the ()?. syntax to invoke the split method on the result of getAddress, in case the result is undefined or null.
+
+Optional chaining can greatly improve the readability and maintainability of your code, especially when dealing with complex object structures or API responses that may contain null or undefined values.
+
+
+### Null Coalescing
+
+Null coalescing in TypeScript is a feature that provides a shorthand syntax for checking if a value is null or undefined, and returning a default value in case it is. It helps to simplify and streamline the code that handles null and undefined values.
+
+The null coalescing operator is represented by two consecutive question marks (??). Here's an example:
+
+```
+const name = null ?? "John";
+console.log(name); // Output: "John"
+
+```
+
+In this example, we use the null coalescing operator to check if the name variable is null or undefined. Since it is null, the operator returns the default value of "John". The resulting value is then assigned to the name variable and printed to the console.
+
+The null coalescing operator can also be used with expressions that may return null or undefined. For example:
+
+```
+const getUser = (id: number): { id: number; name?: string } => {
+  return { id };
+};
+
+const userName = getUser(123)?.name ?? "Unknown";
+console.log(userName); // Output: "Unknown"
+
+```
+
+In this example, we have a function called getUser that returns an object with an id property and an optional name property. We use the null coalescing operator to check if the name property is null or undefined, and return the default value of "Unknown" if it is.
+
+The null coalescing operator can also be chained together with optional chaining for even more concise and readable code. For example:
+
+```
+const user = {
+  name: null
+};
+
+const userName = user?.name ?? "Unknown";
+console.log(userName); // Output: "Unknown"
+
+```
+
+In this example, we use optional chaining to safely access the name property of the user object, even if it is null or undefined. We then use the null coalescing operator to return the default value of "Unknown" if the name property is null or undefined.
+
+Null coalescing can be a powerful tool for simplifying code that deals with null and undefined values. However, it should be used with caution, as it may hide bugs or unexpected behavior if not used appropriately.
+
+
+### Resources
+More on Advanced Types: https://www.typescriptlang.org/docs/handbook/2/types-from-types.html
+
+
+### Exercises
+1. Intersection Types
+Create an interface called Person with the following properties:
+
+firstName (string)
+lastName (string)
+age (number)
+Create an interface called Student with the following properties:
+
+id (number)
+major (string)
+Create a type called PersonWithStudentInfo that extends Person and Student, and adds the following properties:
+
+enrollmentDate (Date)
+status ("full-time" or "part-time")
+
+2. Type Guards
+Create a function called printPersonInfo that takes a parameter called person of type Person | Student. The function should print out the firstName, lastName, and age properties of the person object, and the major property if the object is of type Student.
+
+Use a type guard to check if the person object is of type Student, and print out the major property if it is.
+
+3. Discriminated Unions
+Create a type called Shape that represents a shape, with the following properties:
+
+kind ("circle" or "square" or "rectangle")
+radius (number) - only present if kind is "circle"
+width (number) - only present if kind is "square" or "rectangle"
+height (number) - only present if kind is "rectangle"
+Create a function called getArea that takes a parameter of type Shape and returns the area of the shape.
+
+Use a switch statement and the kind property to handle each type of shape differently.
+
+4. Type Casting
+Create a variable called x of type any, and assign it the value "hello".
+
+Cast x to the type number and store the result in a variable called y.
+
+Print out the value of y.
+
+5. Index Properties
+Create an interface called Dictionary with the following properties:
+
+length (number) - the number of entries in the dictionary
+keys (string[]) - an array of keys in the dictionary
+values (unknown[]) - an array of values in the dictionary, indexed by their corresponding keys
+Create a function called getValue that takes two parameters: dict of type Dictionary and key of type string. The function should return the value in the dictionary corresponding to the given key, or undefined if the key is not found.
+
+Use an index property to allow values to be indexed by keys.
+
+6. Function Overloads
+Create a function called add that takes two parameters of type number, and returns their sum.
+
+Create a function overload for add that takes two parameters of type string, and concatenates them.
+
+Create another function overload for add that takes two parameters of type boolean, and returns their logical AND.
+
+7. Optional Chaining
+Create an object called person with the following properties:
+
+name (string)
+address (object)
+street (string)
+city (string)
+state (string)
+zip (string)
+Use optional chaining to print out the zip property of the address object, even if person or address is null or undefined.
+
+8. Nullish Coalescing
+Create a variable called `x` , and set its value to null.
+
+Create another variable called y, and use nullish coalescing to set its value to x if x is not null or undefined, and 0 otherwise.
+
+Print out the value of y.
+
+### Interview Questions
+- What are intersection types in TypeScript?
+- How can you use intersection types to combine multiple types into a single type?
+- Give an example of a scenario where you might use intersection types.
+- What are type guards in TypeScript?
+- How can you use a type guard to narrow down the type of a variable or parameter?
+- Give an example of a scenario where you might use a type guard.
+- What are discriminated unions in TypeScript?
+- How can you use a discriminated union to define a type that can have multiple shapes with different properties?
+- Give an example of a scenario where you might use a discriminated union.
+- What is type casting in TypeScript?
+- How can you use type casting to convert a value of one type to another?
+- Give an example of a scenario where you might use type casting.
+- What are index properties in TypeScript?
+- How can you use an index property to create a dictionary-like object?
+- Give an example of a scenario where you might use an index property.
+- What are function overloads in TypeScript?
+- How can you use function overloads to define multiple signatures for a function?
+- Give an example of a scenario where you might use function overloads.
+- What is optional chaining in TypeScript?
+- How can you use optional chaining to access nested properties on an object that might be null or undefined?
+- Give an example of a scenario where you might use optional chaining.
+- What is nullish coalescing in TypeScript?
+- How can you use nullish coalescing to provide a default value for a variable that might be null or undefined?
+- Give an example of a scenario where you might use nullish coalescing.
+- Can you combine more than two types using intersection types? If so, how?
+- How do intersection types differ from union types in TypeScript?
+- Are there any limitations or drawbacks to using intersection types?
+- Can you use a custom function as a type guard in TypeScript? If so, how?
+- How can you use the instanceof operator as a type guard?
+- Are there any performance implications to using type guards?
+- Can you have multiple discriminants in a discriminated union in TypeScript? If so, how?
+- How can you use a discriminated union with switch statements in TypeScript?
+- Are there any limitations or drawbacks to using discriminated unions?
+- How can you use the as keyword for type casting in TypeScript?
+- Are there any potential risks or pitfalls to using type casting?
+- When might you prefer to use type guards instead of type casting?
+- What is the difference between an index signature and an index property in TypeScript?
+- Can you use an index property to enforce a specific data type for the keys of an object?
+- Are there any limitations or drawbacks to using index properties?
+- Can you use function overloads with arrow functions in TypeScript? If so, how?
+- How can you use generic types with function overloads in TypeScript?
+- Are there any limitations or drawbacks to using function overloads?
+- Can you use optional chaining with functions in TypeScript? If so, how?
+- How can you use optional chaining with arrays in TypeScript?
+- Are there any performance implications to using optional chaining?
+- Can you use nullish coalescing with functions in TypeScript? If so, how?
+- How can you use nullish coalescing with objects in TypeScript?
+- Are there any limitations or drawbacks to using nullish coalescing?
