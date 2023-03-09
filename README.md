@@ -275,8 +275,6 @@ In this example, the Person class has two properties, firstName and lastName, an
 
 To create an object from this class, you can use the new keyword:
 
-
-```
 In this example, the Person class has two properties, firstName and lastName, and a constructor that takes in two arguments to set these properties. It also has a method getFullName that returns a string concatenation of the firstName and lastName properties.
 
 To create an object from this class, you can use the new keyword:
