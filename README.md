@@ -1363,7 +1363,7 @@ More on TS Interfaces: https://www.typescriptlang.org/docs/handbook/2/objects.ht
 
 
 ## Advanced Types
-### INteraction types
+### Interaction types
 
 In TypeScript, an intersection type is a type that combines multiple types into one by taking the common properties and methods of those types. It allows you to define a type that has all the properties and methods of two or more types.
 
